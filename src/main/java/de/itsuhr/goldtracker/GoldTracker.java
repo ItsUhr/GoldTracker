@@ -43,13 +43,13 @@ public class GoldTracker implements ClientModInitializer {
 		if (!MESSUNG.laeuft()) {
 			MESSUNG.start(jetzt);
 			MESSUNG.stand(kontostand);
-			nachricht(mc, "§6💰 Gold-Tracker: §aMessung gestartet");
+			nachricht(mc, "§6$ Gold-Tracker: §aMessung gestartet");
 		} else {
 			MESSUNG.stopp(jetzt);
 			long ph = MESSUNG.proStunde(jetzt);
-			nachricht(mc, "§6💰 Gold-Tracker: §cgestoppt §7– §f+" + Format.geld(MESSUNG.verdient())
+			nachricht(mc, "§6$ Gold-Tracker: §cgestoppt §7– §f+" + Format.geld(MESSUNG.verdient())
 				+ " §7in " + Format.zeit(MESSUNG.dauer(jetzt)) + " §7= §e" + Format.geld(ph) + "/h");
-			if (Rekord.pruefen(ph, MESSUNG.dauer(jetzt))) nachricht(mc, "§6🏆 NEUER REKORD: §e" + Format.geld(ph) + "/h");
+			if (Rekord.pruefen(ph, MESSUNG.dauer(jetzt))) nachricht(mc, "§6★ NEUER REKORD: §e" + Format.geld(ph) + "/h");
 		}
 	}
 
@@ -62,12 +62,12 @@ public class GoldTracker implements ClientModInitializer {
 		Font f = mc.font;
 		long jetzt = System.currentTimeMillis();
 		String[] z = {
-			"§6§l💰 GOLD-TRACKER",
+			"§6§l$ GOLD-TRACKER",
 			"§7Kontostand: §f" + (kontostand >= 0 ? Format.geld(kontostand) : "§c? §8(" + (rohText == null ? "keine Seitenleiste" : rohText) + ")"),
 			"§7Verdient:   §a+" + Format.geld(MESSUNG.verdient()),
 			"§7Pro Stunde: §e" + Format.geld(MESSUNG.proStunde(jetzt)) + "/h",
 			"§7Zeit:       §f" + Format.zeit(MESSUNG.dauer(jetzt)),
-			"§7Rekord:     §6" + Format.geld(Rekord.bester()) + "/h 🏆",
+			"§7Rekord:     §6" + Format.geld(Rekord.bester()) + "/h ★",
 			MESSUNG.laeuft() ? "§a● läuft §8[G] stopp" : "§8[G] Messung starten",
 		};
 		int x = 6, y = 6, pad = 4, breite = 0;
