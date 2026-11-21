@@ -14,7 +14,6 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-	ignoreFailures = true // Mod wird auch gebaut, wenn deine Tests noch rot sind
 }
 
 processResources {

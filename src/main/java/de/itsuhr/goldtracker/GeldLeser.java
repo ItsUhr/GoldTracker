@@ -1,32 +1,41 @@
 package de.itsuhr.goldtracker;
 
 /**
- * ✍️ DEIN TEIL (im Video live schreiben!)
+ * Wandelt den Geld-Text aus der Seitenleiste in eine Zahl um.
  *
- * Die Seitenleiste zeigt das Geld als Text, z. B. "5,98M".
- * Damit wir rechnen können, brauchen wir daraus eine echte Zahl: 5980000.
- *
- * Beispiele, die funktionieren müssen (siehe GeldLeserTest):
- *   "5,98M"  -> 5980000      (M = Million)
- *   "750K"   -> 750000       (K = Tausend, auch klein "k")
- *   "1,5B"   -> 1500000000   (B = Milliarde)
- *   "12.345" -> 12345        (Punkt = Tausender-Trennzeichen)
- *   "980"    -> 980
- *   "abc"    -> -1           (kein Geld erkannt)
- *
- * Tipps:
- *   - text.trim() entfernt Leerzeichen am Rand
- *   - letztes Zeichen holen: text.charAt(text.length() - 1)
- *   - Punkte weg, Komma in Punkt umwandeln, damit Java es als Kommazahl versteht: "5,98" -> "5.98"
- *   - Double.parseDouble("5.98") * 1_000_000 -> 5980000.0
- *   - Math.round(...) macht daraus eine ganze Zahl (long)
- *   - mit try { ... } catch (NumberFormatException e) { return -1; } fängst du Unsinn ab
+ * <pre>
+ * "5,98M"  -> 5_980_000
+ * "750K"   -> 750_000
+ * "1,5B"   -> 1_500_000_000
+ * "12.345" -> 12_345
+ * "abc"    -> -1
+ * </pre>
  */
 public final class GeldLeser {
 	private GeldLeser() {}
 
+	/**
+	 * @param text Geldbetrag wie in der Seitenleiste, optional mit K (Tausend), M (Million) oder B (Milliarde)
+	 * @return Betrag als ganze Zahl oder {@code -1}, wenn der Text kein Geldbetrag ist
+	 */
 	public static long lies(String text) {
-		// TODO: Hier kommt dein Code hin!
-		return -1;
+		if (text == null) return -1;
+		text = text.trim();
+		if (text.isEmpty()) return -1;
+
+		long faktor = 1;
+		char letztes = Character.toUpperCase(text.charAt(text.length() - 1));
+		if (letztes == 'K') faktor = 1_000;
+		if (letztes == 'M') faktor = 1_000_000;
+		if (letztes == 'B') faktor = 1_000_000_000;
+		if (faktor > 1) text = text.substring(0, text.length() - 1);
+
+		text = text.replace(".", "").replace(",", ".");
+
+		try {
+			return Math.round(Double.parseDouble(text) * faktor);
+		} catch (NumberFormatException e) {
+			return -1;
+		}
 	}
 }

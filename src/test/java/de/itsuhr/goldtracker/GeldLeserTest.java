@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Prüft deinen Code. Starten: Rechtsklick auf die Datei -> Run, oder im Terminal: gradlew test
- * Rot = noch falsch, Grün = alles richtig ✅
- */
+/** Tests für {@link GeldLeser}, {@link Rechner} und {@link Seitenleiste}. Ausführen mit {@code gradlew test}. */
 class GeldLeserTest {
 	@Test void millionen() { assertEquals(5_980_000L, GeldLeser.lies("5,98M")); }
 	@Test void tausend() { assertEquals(750_000L, GeldLeser.lies("750K")); }

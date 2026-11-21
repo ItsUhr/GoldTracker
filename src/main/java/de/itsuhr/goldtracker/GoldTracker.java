@@ -12,6 +12,10 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
+/**
+ * Gold-Tracker: Client-Mod, die den Kontostand aus der Seitenleiste liest und
+ * den Verdienst pro Stunde als HUD anzeigt. Taste G startet/stoppt eine Messung.
+ */
 public class GoldTracker implements ClientModInitializer {
 	public static final String ID = "goldtracker";
 
