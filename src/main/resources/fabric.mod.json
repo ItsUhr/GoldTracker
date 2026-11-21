@@ -3,12 +3,22 @@
 	"id": "goldtracker",
 	"version": "${version}",
 	"name": "Gold-Tracker",
-	"description": "Zeigt live, wie viel Geld du pro Stunde verdienst. Liest nur die Seitenleiste – keine Automatik, kein Vorteil.",
-	"authors": ["ItsUhr"],
+	"description": "Zeigt live, wie viel Geld du pro Stunde verdienst – perfekt, um Farmen und Geldmethoden zu vergleichen. Liest nur die Seitenleiste: keine Automatik, kein Vorteil. Taste G = Messung starten/stoppen.",
+	"authors": [
+		"ItsUhr"
+	],
 	"license": "MIT",
 	"environment": "client",
+	"icon": "assets/goldtracker/icon.png",
+	"contact": {
+		"homepage": "https://github.com/ItsUhr/GoldTracker",
+		"sources": "https://github.com/ItsUhr/GoldTracker",
+		"issues": "https://github.com/ItsUhr/GoldTracker/issues"
+	},
 	"entrypoints": {
-		"client": ["de.itsuhr.goldtracker.GoldTracker"]
+		"client": [
+			"de.itsuhr.goldtracker.GoldTracker"
+		]
 	},
 	"depends": {
 		"fabricloader": ">=0.20.1",

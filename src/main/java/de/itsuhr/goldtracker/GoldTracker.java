@@ -62,23 +62,6 @@ public class GoldTracker implements ClientModInitializer {
 	}
 
 	private static void zeichnen(GuiGraphicsExtractor g) {
-		Minecraft mc = Minecraft.getInstance();
-		Font f = mc.font;
-		long jetzt = System.currentTimeMillis();
-		String[] z = {
-			"§6§l$ GOLD-TRACKER",
-			"§7Kontostand: §f" + (kontostand >= 0 ? Format.geld(kontostand) : "§c? §8(" + (rohText == null ? "keine Seitenleiste" : rohText) + ")"),
-			"§7Verdient:   §a+" + Format.geld(MESSUNG.verdient()),
-			"§7Pro Stunde: §e" + Format.geld(MESSUNG.proStunde(jetzt)) + "/h",
-			"§7Zeit:       §f" + Format.zeit(MESSUNG.dauer(jetzt)),
-			"§7Rekord:     §6" + Format.geld(Rekord.bester()) + "/h ★",
-			MESSUNG.laeuft() ? "§a● läuft §8[G] stopp" : "§8[G] Messung starten",
-		};
-		int x = 6, y = 6, pad = 4, breite = 0;
-		for (String s : z) breite = Math.max(breite, f.width(s));
-		int hoehe = z.length * (f.lineHeight + 2);
-		g.fill(x - pad, y - pad, x + breite + pad, y + hoehe + pad - 2, 0xB0101418);
-		g.fill(x - pad, y - pad, x - pad + 2, y + hoehe + pad - 2, 0xFFFFB300);
-		for (int i = 0; i < z.length; i++) g.text(f, z[i], x + 2, y + i * (f.lineHeight + 2), 0xFFFFFFFF, true);
+		Hud.zeichnen(g, kontostand, rohText, MESSUNG);
 	}
 }

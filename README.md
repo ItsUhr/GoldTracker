@@ -1,3 +1,5 @@
+<img src="src/main/resources/assets/goldtracker/icon.png" width="96" align="right">
+
 # 💰 Gold-Tracker
 
 Eine kleine **Fabric-Client-Mod** für Minecraft **26.3**, die live anzeigt,
@@ -35,7 +37,8 @@ Die Mod liegt danach in `build/libs/`. Tests: `gradlew test`.
 ## Projektaufbau
 | Datei | Aufgabe |
 |---|---|
-| `GoldTracker.java` | Einstieg, Taste, HUD |
+| `GoldTracker.java` | Einstieg, Taste, Ablauf |
+| `Hud.java` | das Panel oben links |
 | `Seitenleiste.java` | liest die „Geld“-Zeile aus dem Scoreboard |
 | `GeldLeser.java` | `"5,98M"` → `5980000` |
 | `Rechner.java` | Verdienst pro Stunde |
